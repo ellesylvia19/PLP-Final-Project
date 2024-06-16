@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block content %}
+
+    <main class="main">
+      <div class="page-header breadcrumb-wrap">
+          <div class="container">
+              <div class="breadcrumb">
+                  <a href="{% url 'store:home' %}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                  <span></span> {{product.category}} <span></span> {{product.title}}
+              </div>
+          </div>
+      </div>
+      <div class="container mb-30">
+          <div class="row">
+              <div class="col-xl-11 col-lg-12 m-auto">
+                  <div class="row">
+                      <div class="col-xl-9">
+                          <div class="product-detail accordion-detail">
+                              <div class="row mb-50 mt-30">
+                                  <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
+                                      <div class="detail-gallery">
+                                        
+                                          <div class="product-image-slider">
+                                              
+                                                  <img src="{{product.product_image.url}}" alt="product image" />
+                                              
+                                          </div>
+                                          <div class="short-desc mb-30">
+                                              <p class="font-lg">{{product.detail_description}}</p>
+                                          </div>
+                                      </div>
+                                      
+                                  </div>
+                                  <div class="col-md-6 col-sm-12 col-xs-12">
+                                      <div class="detail-info pr-30 pl-30">
+                                          
+                                          <h2 class="title-detail">{{product.title}}</h2>
+                                          <div class="product-detail-rating">
+                                              <div class="product-rate-cover text-end">
+                                                  <div class="product-rate d-inline-block">
+                                                      <div class="product-rating" style="width: 90%"></div>
+                                                  </div>
+                                                  
+                                              </div>
+                                          </div>
+                                          <div class="clearfix product-price-cover">
+                                              <div class="product-price primary-color float-left">
+                                                  <span class="current-price text-brand">ksh {{product.price}}</span>
+                                                  <span>
+                                                      
+                                                      <span class="old-price font-md ml-15">ksh {{product.price}}</span>
+                                                  </span>
+                                              </div>
+                                          </div>
+                                         
+                                          <div class="detail-extralink mb-50">
+                                              <div class="detail-qty border radius">
+                                                  <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
+                                                  <span class="qty-val">1</span>
+                                                  <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+                                              </div>
+                                              <div class="product-extra-link2">
+                                                  <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                                  
+                                              </div>
+                                          </div>
+                                          <div class="font-xs">
+                                              <ul class="mr-50 float-start">
+                                                  <li class="mb-5">Type: <span class="text-brand">Organic</span></li>
+                                                  <li>LIFE: <span class="text-brand">14 days on refrigiration</span></li>
+                                                  <li class="mb-5">SKU: <a href="#">{{product.sku}}</a></li>
+                                              </ul>
+                                          </div>
+                                      </div>
+                                      <!-- Detail Info -->
+                                  </div>
+                              </div>
+                              
+                              <div class="row mt-60">
+                              
+                                  <div class="col-12">
+                                      <h2 class="section-title style-1 mb-30">Related products</h2>
+                                  </div>
+                                 
+                                  <div class="col-12">
+                                      <div class="row related-products">
+                                        {% if related_products %}
+                                          {% for rp in related_products %}  
+                                          <div class="col-lg-3 col-md-4 col-12 col-sm-6">
+                                              <div class="product-cart-wrap hover-up">
+                                                  <div class="product-img-action-wrap">
+                                                      <div class="product-img product-img-zoom">
+                                                          <a href="{% url 'store:product-detail' rp.slug %}" tabindex="0">
+                                                              <img class="default-img" src="{{rp.product_image.url}}" alt="" />
+                                                              <img class="hover-img" src="{{rp.product_image.url}}" alt="" />
+                                                          </a>
+                                                      </div>
+                                                      
+                                                      <!-- <div class="product-badges product-badges-position product-badges-mrg">
+                                                          <span class="hot">Hot</span>
+                                                      </div> -->
+                                                  </div>
+                                                  <div class="product-content-wrap">
+                                                      <h2><a href="{% url 'store:product-detail' rp.slug %}" tabindex="0">{{rp.title}}</a></h2>
+                                                      <div class="rating-result" title="90%">
+                                                          <span> </span>
+                                                      </div>
+                                                      <div class="product-price">
+                                                          <span>ksh. {{rp.price}}</span>
+                                                          
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          {% endfor %}
+                                        {% endif %}
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+  </main>
+    
+      {% endblock content %}
+
+
+      
+      
+      
+      
+      
+      

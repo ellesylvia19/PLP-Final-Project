@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+      {% block content %}
+
+     
+      <main class="main">
+        <section class="hero-3 position-relative align-items">
+            <h2 class="mb-30 text-center">Subscribe to our Newsletter for exclusive Deals!</h2>
+            <form class="form-subcriber d-flex mb-30 text-center">
+                <input type="email" placeholder="Your emaill address" tabindex="-1" />
+                <button class="btn" type="submit" tabindex="-1">Subscribe</button>
+            </form>
+        </section>
+        <section class="bg-grey-1 section-padding pt-100 pb-80 mb-80">
+            <div class="container">
+                <h1 class="mb-80 text-center">Trending items</h1>
+                <div class="row product-grid">
+                    {% if products %}
+                        {% for product in products %}   
+                            <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                            <div class="product-cart-wrap mb-30">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        <a href="{% url 'store:product-detail' product.slug %}">
+                                            <img class="default-img" src="{{ product.product_image.url }}" alt="" />
+                                            <img class="hover-img" src="{{ product.product_image.url }}" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                        <span class="hot">Hot</span>
+                                    </div>
+                                </div>
+                                <div class="product-content-wrap">
+                                {% if categories %}
+                                  {% for category in categories %}
+                                    <div class="product-category">
+                                        <a href="{% url 'store:category-products' category.slug %}">{{product.category}}</a>
+                                    </div>
+                                  {% endfor %}
+                                {% endif %}
+                                    <h2><a href="{% url 'store:product-detail' product.slug %}">{{product.title}}</a></h2>
+                                    <div class="product-rate-cover">
+                                        <div class="product-rate d-inline-block">
+                                            <div class="product-rating" style="width: 90%"></div>
+                                        </div>
+                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                    </div> 
+                                    <!-- <div>
+                                        <span class="font-small text-muted">By <a href="vendor-details-1.html">NestFood</a></span>
+                                    </div> -->
+                                    <div class="product-card-bottom">
+                                        <div class="product-price">
+                                            <span>ksh. {{product.price}}</span>
+                                            <span class="old-price">ksh. {{product.price}}</span>
+                                        </div>
+                                        <div class="add-cart">
+                                            <a class="add" href="{% url 'store:add-to-cart' slug=product.slug %}"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <!--end product card-->
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <!--row-->
+                
+            </div>
+        </section>
+    </main>
+      {% endblock content %}

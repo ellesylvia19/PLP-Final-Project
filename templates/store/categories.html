@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+      {% block content %}
+
+        
+    <main class="main">
+        <div class="page-header mt-30 mb-50">
+            <div class="container">
+                <div class="archive-header">
+                    <div class="row align-items-center">
+                        <div class="col-xl-3">
+                            <h1 class="mb-15">Category</h1>
+                            <div class="breadcrumb">
+                                <a href="{% url 'store:home' %}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                                <span></span> Shop <span></span> Category
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mb-30">
+            <div class="row">
+                <div class="col-lg-4-5">
+                    <div class="shop-product-fillter">
+                    </div>
+                    <div class="row product-grid">
+                    {% if categories %}
+                        {% for category in categories %}
+                        
+                        <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                            <div class="product-cart-wrap mb-30">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        <a href="{% url 'store:category-products' category.slug %}">
+                                            <img class="default-img" src="{{ category.category_image.url }}" alt="" />
+                                            <img class="hover-img" src="{{ category.category_image.url }}" alt="" />
+                                        </a>
+                                    </div>
+                                    <!-- <div class="product-badges product-badges-position product-badges-mrg">
+                                        <span class="hot">Hot</span>
+                                    </div> -->
+                                </div>
+                                <div class="product-content-wrap">
+                                    <div class="product-category">
+                                        <a href="{{ category.category_image.url }}">{{ category.title }}</a>
+                                    </div>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                        <!--end product card-->
+                        {% endfor %}
+                    {% endif %}   
+                    </div>
+                    <!--product grid-->
+                    
+                </div>
+                
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+
+      {% endblock content %}
+
+
+
+
+
+

@@ -1,0 +1,171 @@
+{% load static %}
+
+<!-- navbar-->
+      <header class="header-area header-style-1 header-height-2"> 
+        <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
+            <div class="container">
+                <div class="header-wrap">
+                    <div class="logo logo-width-1">
+                        <a href="{% url 'store:home' %}"><img src="{% static 'assets/imgs/logo.png' %}" alt="logo" /></a>
+                    </div>
+                    <div class="header-right">
+                        <div class="search-style-2">
+                            <div class="search-style-2">
+                                <form action="{% url 'store:search' %}" method="GET">
+                             
+                                
+                                <input type="text" name="q" placeholder="Search for items..."/>
+                                <button type="submit" class="fas fa-search"></button>
+                                
+                                </form>
+                        <div class="header-action-right">
+                            <div class="header-action-2">
+                                <!-- <div class="header-action-icon-2">
+                                    <a href="shop-wishlist.html">
+                                        <img class="svgInject" alt="GreenGroove" src="{% static 'assets/imgs/theme/icons/icon-heart.svg' %}" />
+                                        <span class="pro-count blue">6</span>
+                                    </a>
+                                    <a href="shop-wishlist.html"><span class="lable">Wishlist</span></a>
+                                </div> -->
+                                <div class="header-action-icon-2">
+                                    <a class="mini-cart-icon" href="{% url 'store:view-cart' %}">
+                                        <img alt="GreenGroove" src="{% static 'assets/imgs/theme/icons/icon-cart.svg' %}" />
+                                        <span class="pro-count blue">{{cart_items.count}}</span>
+                                    </a>
+                                    <a href="{% url 'store:view-cart' %}"><span class="lable">Cart</span></a>
+                                </div>
+                                <div class="header-action-icon-2">
+                                    <a href="{% url 'store:profile' %}">
+                                        <img class="svgInject" alt="GreenGroove" src="{% static 'assets/imgs/theme/icons/icon-user.svg' %}" />
+                                    </a>
+                                    <a href="{% url 'store:profile' %}"><span class="lable ml-0">Account</span></a>
+                                    <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
+                                        <ul>
+                                            <li><a href="{% url 'store:profile' %}"><i class="fi fi-rs-user mr-10"></i>My Account</a></li>
+                                            <li><a href="{% url 'store:profile' %}"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a></li>
+                                            {% if request.user.is_authenticated%}
+                                            <li><a href="{% url 'store:logout' %}"><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a></li>
+                                            {%else%}
+                                            <li><a href="{% url 'store:login' %}"><i class="fi fi-rs-sign-in mr-10"></i>Sign in</a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom header-bottom-bg-color sticky-bar">
+            <div class="container">
+                <div class="header-wrap header-space-between position-relative">
+                    <div class="logo logo-width-1 d-block d-lg-none">
+                        <a href="{% url 'store:home' %}"><img src="{% static 'assets/imgs/logo.png' %}" alt="logo" /></a>
+                    </div>
+                    <div class="header-nav d-none d-lg-flex">
+                        <div class="main-categori-wrap d-none d-lg-block">
+
+                  
+
+                            <a class="categories-button-active" href="#">
+                                <span class="fi-rs-apps"></span> <span class="et">Browse</span> All Categories
+                                <i class="fi-rs-angle-down"></i>
+                            </a>
+                            <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
+                                <div class="d-flex categori-dropdown-inner">
+                                    <ul>
+                                    
+                                      {% for cat_menu in categories_menu %}
+                                        <li>
+                                            <a href="{% url 'store:all-categories' %}"> <img src="{{category_image.url}}" alt="" />{{cat_menu.title}}</a>
+                                        </li>
+                                      {%endfor%}
+                  
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
+                            <nav>
+                                <ul>
+                                    <li class="hot-deals"><img src="{% static 'assets/imgs/theme/icons/icon-hot.svg' %}" alt="hot deals" /><a href="{% url 'store:deals' %}">Deals</a></li>
+                                    <li>
+                                        <a class="active" href="{% url 'store:home' %}">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'store:shop' %}">Shop <i class="fi-rs-angle-down"></i></a>
+                                        <ul class="sub-menu">
+                                            <li><a href="{% url 'store:shop' %}">shop</a></li>
+                                            <li><a href="{% url 'store:view-cart' %}">Cart</a></li>
+                                            <li><a href="{% url 'store:checkout' %}">Checkout</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Pages <i class="fi-rs-angle-down"></i></a>
+                                        <ul class="sub-menu">
+                                            <li><a href="#">About Us</a></li>
+                                            <li><a href="#">Contact</a></li>
+                                            <li><a href="{% url 'store:profile' %}">My Account</a></li>
+                                            {% if request.user.is_authenticated%}
+                                            <li><a href="{% url 'store:logout' %}">Log out</a></li>
+                                            {%else%}
+                                            <li><a href="{% url 'store:login' %}">Log in</a></li>
+                                            {% endif %}
+                                            <li><a href="{% url 'store:register' %}">Register</a></li>
+                                            <li><a href="page-forgot-password.html">Forgot password</a></li>
+                                            <li><a href="page-reset-password.html">Reset password</a></li>
+                                            <li><a href="page-purchase-guide.html">Purchase Guide</a></li>
+                                            <li><a href="page-privacy-policy.html">Privacy Policy</a></li>
+                                            <li><a href="page-terms.html">Terms of Service</a></li>
+                                            <li><a href="page-404.html">404 Page</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="page-contact.html">Contact</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="hotline d-none d-lg-flex">
+                        <img src="{% static 'assets/imgs/theme/icons/icon-headphone.svg' %}" alt="hotline" />
+                        <p>+2547000111353<span>24/7 Support Center</span></p>
+                    </div>
+                    <div class="header-action-icon-2 d-block d-lg-none">
+                        <div class="burger-icon burger-icon-white">
+                            <span class="burger-icon-top"></span>
+                            <span class="burger-icon-mid"></span>
+                            <span class="burger-icon-bottom"></span>
+                        </div>
+                    </div>
+                    <div class="header-action-right d-block d-lg-none">
+                        <div class="header-action-2">
+                            <div class="header-action-icon-2">
+                                <a href="shop-wishlist.html">
+                                    <img alt="GreenGroove" src="{% static 'assets/imgs/theme/icons/icon-heart.svg' %}" />
+                                    <span class="pro-count white">4</span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{message.tags}}">
+                        <strong>{{message}}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <script>
+                    setTimeout(()=> {
+                        $(".alert").alert('close');
+                    }, 2000)
+                </script>
+            </div>
+        </div>
+    </header>
+
+    

@@ -79,7 +79,7 @@
                                     </div>
                                 </td>
                                 <td class="align-middle border-0">
-                                    <p class="mb-0 small">ksh. {{cart_item.product.price}}</p>
+                                    <p class="mb-0 small">ksh. {{item.total_price}}</p>
                                 </td>
                                 <td class="align-middle border-0"><a class="reset-anchor"
                                         href="#"><i class="fas fa-trash-alt small text-muted"></i></a></td>
@@ -107,13 +107,13 @@
                         <ul class="list-unstyled mb-0">
                             <li class="d-flex align-items-center justify-content-between"><strong
                                     class="text-uppercase small font-weight-bold">Subtotal</strong><span
-                                    class="text-muted small">ksh. {{amount|intcomma}}</span></li>
+                                    class="text-muted small">ksh. {{cart_subtotal}}</span></li>
                             <li class="d-flex align-items-center justify-content-between"><strong
                                     class="text-uppercase small font-weight-bold">Shipping Charge</strong><span
-                                    class="text-muted small">+ ksh. 150</span></li>
+                                    class="text-muted small">+ ksh. {{shipping_fee}}</span></li>
                             <li class="border-bottom my-2"></li>
                             <li class="d-flex align-items-center justify-content-between mb-4"><strong
-                                    class="text-uppercase small font-weight-bold">Total</strong><span>ksh.{{total_amount|intcomma}}</span>
+                                    class="text-uppercase small font-weight-bold"> Total</strong><span>ksh.{{grand_total|intcomma}}</span>
                             </li>
                             <li>
 

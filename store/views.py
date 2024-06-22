@@ -127,7 +127,32 @@ def add_to_cart(request, slug):
 def view_cart(request):
     cart, created = Cart.objects.get_or_create(user=request.user)
     cart_items = cart.cartitem_set.all()
-    return render(request, 'store/cart.html', {'cart_items': cart_items})
+    
+    #calculate totals in cart
+    cart_subtotal = 0
+    for item in cart_items:
+        item.total_price = item.quantity * item.product.price
+        cart_subtotal += item.total_price
+        #shipping fee
+        shipping_fee = 150
+        grand_total = cart_subtotal + shipping_fee
+        #item total
+        item_total = item.quantity * item.product.price
+        
+        
+        context = {
+            'item_total' : item_total,
+            'cart_items' : cart_items,
+            'cart_subtotal' : cart_subtotal,
+            'shipping_fee' : shipping_fee,
+            'grand_total' : grand_total,
+            'cart_items': cart_items
+        }
+
+    if cart_items:    
+        return render(request, 'store/cart.html', context)
+    else:
+        return render(request, 'store/cart.html', {'cart_items': cart_items})
 
 
 @login_required
@@ -200,6 +225,7 @@ def search(request):
     if query:
         # Perform a case-insensitive search on the product title
         results = Product.objects.filter(title__icontains=query)
+
     else:
         results = []
 

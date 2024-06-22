@@ -1,10 +1,43 @@
 {% extends 'base.html' %}
 {% load static %}
 
-      {% block content %}
-
-     
-      <main class="main">
+    {% block content %}
+  
+    <!-- <header class="header-area header-style-1 header-height-2">
+       
+        <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
+            <div class="container">
+                <div class="header-wrap">
+                    <div class="logo logo-width-1">
+                        <a href="index.html"><img src="assets/imgs/theme/logo.svg" alt="logo" /></a>
+                    </div>
+                    <div class="header-right">
+                        <div class="search-style-2">
+                            <form action="#">
+                                <select class="select-active">
+                                    <option>All Categories</option>
+                                    <option>Milks and Dairies</option>
+                                    <option>Wines & Alcohol</option>
+                                    <option>Clothing & Beauty</option>
+                                    <option>Pet Foods & Toy</option>
+                                    <option>Fast food</option>
+                                    <option>Baking material</option>
+                                    <option>Vegetables</option>
+                                    <option>Fresh Seafood</option>
+                                    <option>Noodles & Rice</option>
+                                    <option>Ice cream</option>
+                                </select>
+                                <input type="text" placeholder="Search for items..." />
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    End header -->
+    <main class="main">
         <section class="hero-3 position-relative align-items">
             <h2 class="mb-30 text-center">Subscribe to our Newsletter for exclusive Deals!</h2>
             <form class="form-subcriber d-flex mb-30 text-center">
@@ -12,13 +45,15 @@
                 <button class="btn" type="submit" tabindex="-1">Subscribe</button>
             </form>
         </section>
-        <section class="bg-grey-1 section-padding pt-100 pb-80 mb-80">
-            <div class="container">
-                <h1 class="mb-80 text-center">Trending items</h1>
-                <div class="row product-grid">
+        
+        <div class="container mb-30">
+            <div class="row">
+                <div class="col-12">
+                    
+                    <div class="row product-grid">
                     {% if products %}
-                        {% for product in products %}   
-                            <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                        {% for product in products %} 
+                        <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                             <div class="product-cart-wrap mb-30">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
@@ -27,47 +62,162 @@
                                             <img class="hover-img" src="{{ product.product_image.url }}" alt="" />
                                         </a>
                                     </div>
+                                   
                                     <div class="product-badges product-badges-position product-badges-mrg">
                                         <span class="hot">Hot</span>
                                     </div>
                                 </div>
                                 <div class="product-content-wrap">
                                 {% if categories %}
-                                  {% for category in categories %}
+                                    {% for category in categories %}
                                     <div class="product-category">
                                         <a href="{% url 'store:category-products' category.slug %}">{{product.category}}</a>
                                     </div>
-                                  {% endfor %}
+                                    {% endfor %}
                                 {% endif %}
                                     <h2><a href="{% url 'store:product-detail' product.slug %}">{{product.title}}</a></h2>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                    </div> 
-                                    <!-- <div>
-                                        <span class="font-small text-muted">By <a href="vendor-details-1.html">NestFood</a></span>
-                                    </div> -->
                                     <div class="product-card-bottom">
                                         <div class="product-price">
                                             <span>ksh. {{product.price}}</span>
                                             <span class="old-price">ksh. {{product.price}}</span>
                                         </div>
                                         <div class="add-cart">
-                                            <a class="add" href="{% url 'store:add-to-cart' slug=product.slug %}"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                            <a class="add" href="{% url 'store:add-to-cart' slug=product.slug %}""><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>
-                            <!--end product card-->
+                        </div>
                         {% endfor %}
                     {% endif %}
+                        <!--end product card-->
+                        <!-- <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                            <div class="product-cart-wrap mb-30">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        <a href="shop-product-right.html">
+                                            <img class="default-img" src="assets/imgs/shop/product-2-1.jpg" alt="" />
+                                            <img class="hover-img" src="assets/imgs/shop/product-2-2.jpg" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                        <span class="sale">Sale</span>
+                                    </div>
+                                </div>
+                                <div class="product-content-wrap">
+                                    <div class="product-category">
+                                        <a href="shop-grid-right.html">Hodo Foods</a>
+                                    </div>
+                                    <h2><a href="shop-product-right.html">All Natural Italian-Style Chicken Meatballs</a></h2>
+                                    <div class="product-card-bottom">
+                                        <div class="product-price">
+                                            <span>ksh. 52.85</span>
+                                            <span class="old-price">ksh. 55.8</span>
+                                        </div>
+                                        <div class="add-cart">
+                                            <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        end product card -->
+                        <!-- <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                            <div class="product-cart-wrap mb-30">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        <a href="shop-product-right.html">
+                                            <img class="default-img" src="assets/imgs/shop/product-3-1.jpg" alt="" />
+                                            <img class="hover-img" src="assets/imgs/shop/product-3-2.jpg" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                        <span class="new">New</span>
+                                    </div>
+                                </div>
+                                <div class="product-content-wrap">
+                                    <div class="product-category">
+                                        <a href="shop-grid-right.html">Snack</a>
+                                    </div>
+                                    <h2><a href="shop-product-right.html">Angie’s Boomchickapop Sweet & Salty</a></h2>
+                                    <div class="product-card-bottom">
+                                        <div class="product-price">
+                                            <span>ksh 48.85</span>
+                                            <span class="old-price">ksh 52.8</span>
+                                        </div>
+                                        <div class="add-cart">
+                                            <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        end product card -->
+                        <!-- <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                            <div class="product-cart-wrap mb-30">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        <a href="shop-product-right.html">
+                                            <img class="default-img" src="assets/imgs/shop/product-4-1.jpg" alt="" />
+                                            <img class="hover-img" src="assets/imgs/shop/product-4-2.jpg" alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-content-wrap">
+                                    <div class="product-category">
+                                        <a href="shop-grid-right.html">Vegetables</a>
+                                    </div>
+                                    <h2><a href="shop-product-right.html">Foster Farms Takeout Crispy Classic</a></h2>
+                                    <div class="product-card-bottom">
+                                        <div class="product-price">
+                                            <span>$17.85</span>
+                                            <span class="old-price">$19.8</span>
+                                        </div>
+                                        <div class="add-cart">
+                                            <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        end product card -->
+                        <!-- <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                            <div class="product-cart-wrap mb-30">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        <a href="shop-product-right.html">
+                                            <img class="default-img" src="assets/imgs/shop/product-5-1.jpg" alt="" />
+                                            <img class="hover-img" src="assets/imgs/shop/product-5-2.jpg" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                        <span class="best">-14%</span>
+                                    </div>
+                                </div>
+                                <div class="product-content-wrap">
+                                    <div class="product-category">
+                                        <a href="shop-grid-right.html">Pet Foods</a>
+                                    </div>
+                                    <h2><a href="shop-product-right.html">Blue Diamond Almonds Lightly Naturel</a></h2>
+                                    <div class="product-card-bottom">
+                                        <div class="product-price">
+                                            <span>$23.85</span>
+                                            <span class="old-price">$25.8</span>
+                                        </div>
+                                        <div class="add-cart">
+                                            <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        end product card -->
+                    </div>
+                   
+                    
                 </div>
-                <!--row-->
-                
             </div>
-        </section>
+        </div>
     </main>
-      {% endblock content %}
+
+    {% endblock content %}
